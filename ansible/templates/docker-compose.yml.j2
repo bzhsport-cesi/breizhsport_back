@@ -1,0 +1,26 @@
+
+services:  
+
+  back:
+    image: {{ image_name }}
+    networks: 
+      - bzh_network
+    ports:
+      - '1337:1337'
+    volumes:
+      - ./database:/opt/app/database:rw
+    environment:
+      - HOST=0.0.0.0
+      - PORT=1337
+      - APP_KEYS=toBeModified1,toBeModified2
+      - API_TOKEN_SALT=tobemodified
+      - ADMIN_JWT_SECRET=tobemodified
+      - TRANSFER_TOKEN_SALT=tobemodified
+      - JWT_SECRET=tobemodified
+      - DATABASE_CLIENT={{ db_client }}
+      - DATABASE_FILENAME={{ db_path }}
+
+networks:
+  bzh_network:
+    name: bzh_network
+    external: true
