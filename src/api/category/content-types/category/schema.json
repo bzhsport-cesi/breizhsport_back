@@ -20,27 +20,19 @@
     "description": {
       "type": "text"
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "name",
-      "required": true
-    },
     "products": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::product.product"
     },
-    "parent": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "children"
+    "depth": {
+      "type": "integer",
+      "required": true
     },
-    "children": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::category.category",
-      "mappedBy": "parent"
+    "slug": {
+      "type": "string",
+      "required": true,
+      "unique": true
     }
   }
 }
