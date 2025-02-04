@@ -4,7 +4,8 @@
   "info": {
     "singularName": "product",
     "pluralName": "products",
-    "displayName": "product"
+    "displayName": "product",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -33,6 +34,11 @@
       "type": "component",
       "repeatable": false,
       "component": "product.variant"
+    },
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
     }
   }
 }
