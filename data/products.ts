@@ -313,7 +313,7 @@ const products = [
         description: "A premium football jersey made of cotton.",
         publishedAt: new Date(),
         defaultVariant: {
-            sku: "BAJ-001",
+            sku: "FOJ-001",
             price: 10.99,
             stock: 50,
             publishedAt: new Date(),
@@ -326,7 +326,7 @@ const products = [
         },
         variants: [
             {
-                sku: "BAJ-002",
+                sku: "FOJ-002",
                 price: 10.99,
                 stock: 50,
                 publishedAt: new Date(),
@@ -338,7 +338,7 @@ const products = [
                 ]
             },
             {
-                sku: "BAJ-003",
+                sku: "FOJ-003",
                 price: 10.99,
                 stock: 50,
                 publishedAt: new Date(),

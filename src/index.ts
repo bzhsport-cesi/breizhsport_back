@@ -23,43 +23,39 @@ export default {
     console.log("\nSeeding database...");
     try {
 
-      console.log("Deleting existing admin user...")
+      console.log("Is there already the shared admin account ?")
       const existingAdmin = await strapi.query("admin::user").findOne({
         where: {
           email: "admin@breizhsport.com",
         }
       })
 
-      await strapi.documents("admin::user").delete({
-        documentId: existingAdmin.documentId
-      })
-
-      console.log("Creating admin user")
-      const adminRole = await strapi.query("admin::role").findOne(
-        {
-          where: {
-            code: "strapi-super-admin"
+      if (!existingAdmin) {
+        console.log("Creating admin user")
+        const adminRole = await strapi.query("admin::role").findOne(
+          {
+            where: {
+              code: "strapi-super-admin"
+            }
           }
-        }
-      )
-      await strapi.documents("admin::user").create({
-        data: {
-          email: "admin@breizhsport.com",
-          username: "admin",
-          password: "Admin1234",
-          firstname: "Admin",
-          blocked: false,
-          isActive: true,
-          publishedAt: new Date(),
-          roles: [adminRole.documentId]
-        },
-        status: "published"
-      })
+        )
+        await strapi.documents("admin::user").create({
+          data: {
+            email: "admin@breizhsport.com",
+            username: "admin",
+            password: "Admin1234",
+            firstname: "Admin",
+            blocked: false,
+            isActive: true,
+            publishedAt: new Date(),
+            roles: [adminRole.documentId]
+          },
+          status: "published"
+        })
+      }
 
       console.log("Deleting existing products...");
       const existingProducts = await strapi.documents("api::product.product").findMany()
-
-      console.log(existingProducts)
 
       for (const product of existingProducts) {
         await strapi.documents("api::product.product").delete({
@@ -69,13 +65,12 @@ export default {
 
       console.log("Creating products...");
       for (const product of products) {
-        const caca = await strapi.documents("api::product.product").create({
+        await strapi.documents("api::product.product").create({
           data: {
             ...product
           },
           status: "published"
         })
-        console.log(caca)
       }
 
       console.log("Deleting existing categories...")
@@ -97,7 +92,7 @@ export default {
       }
       console.log("Seeding complete.");
     } catch (e) {
-      console.error("Seeding error :", JSON.stringify(e.details));
+      console.error("Seeding error :", JSON.stringify(e));
     }
   }
 }
