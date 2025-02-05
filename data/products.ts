@@ -146,6 +146,10 @@ const products = [
                 {
                     name: "Size",
                     value: "S"
+                },
+                {
+                    name: "Color",
+                    value: "Black"
                 }
             ]
         },
@@ -159,6 +163,10 @@ const products = [
                     {
                         name: "Size",
                         value: "M"
+                    },
+                    {
+                        name: "Color",
+                        value: "Black"
                     }
                 ]
             },
@@ -172,6 +180,10 @@ const products = [
                         name: "Size",
                         value: "L"
                     },
+                    {
+                        name: "Color",
+                        value: "Black"
+                    }
                 ]
             }
         ]
