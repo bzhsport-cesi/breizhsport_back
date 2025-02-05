@@ -20,11 +20,6 @@
     "description": {
       "type": "text"
     },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product"
-    },
     "depth": {
       "type": "integer",
       "required": true
@@ -33,6 +28,12 @@
       "type": "string",
       "required": true,
       "unique": true
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "category"
     }
   }
 }
