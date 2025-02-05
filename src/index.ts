@@ -1,7 +1,7 @@
 import type { Core } from '@strapi/strapi';
 import { categories } from '../data/categories';
 import { products } from '../data/products';
-
+import { categoriesProduct } from '../data/categories-products';
 
 export default {
   /**
@@ -90,6 +90,32 @@ export default {
           status: "published"
         })
       }
+
+      console.log("Linking categories & products...")
+
+      for (const relation of categoriesProduct) {
+        const category = await strapi.query("api::category.category").findOne({
+          where: {
+            slug: relation.category
+          }
+        })
+
+        const products = await strapi.query("api::product.product").findMany({
+          where: {
+            slug: relation.products
+          }
+        })
+
+        await strapi.documents("api::category.category").update({
+          data: {
+            products: products.map((product) => product.documentId),
+            publishedAt: new Date(),
+          },
+          documentId: category.documentId,
+          status: "published"
+        })
+      }
+
       console.log("Seeding complete.");
     } catch (e) {
       console.error("Seeding error :", JSON.stringify(e));
