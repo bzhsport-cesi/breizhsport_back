@@ -5,7 +5,7 @@ export default {
         {
             method: 'GET',
             path: '/category-page',
-            handler: 'CategoryPage.findCategoryPage'
+            handler: 'categorypage.findCategoryPage'
         }
     ]
 }
