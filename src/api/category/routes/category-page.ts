@@ -4,8 +4,8 @@ export default {
     routes: [
         {
             method: 'GET',
-            path: '/category-page',
-            handler: 'categorypage.findCategoryPage'
+            path: '/category-page/:slug',
+            handler: 'categorypage.findCategoryPage',
         }
     ]
 }
