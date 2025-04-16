@@ -4,8 +4,13 @@ export default {
     routes: [
         {
             method: 'GET',
-            path: '/category-page/:slug',
+            path: '/category-page/:slug*',
             handler: 'categorypage.findCategoryPage',
+            config: {
+                auth: false, // ou true si besoin
+                // match tous les slugs avec slash
+                matchPathRegex: /^\/category-page(?:\/([\w/-]+))?$/,
+            }
         }
     ]
 }
