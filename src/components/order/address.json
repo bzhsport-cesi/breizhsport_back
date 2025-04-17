@@ -1,0 +1,9 @@
+{
+  "collectionName": "components_order_addresses",
+  "info": {
+    "displayName": "Address",
+    "icon": "house"
+  },
+  "options": {},
+  "attributes": {}
+}

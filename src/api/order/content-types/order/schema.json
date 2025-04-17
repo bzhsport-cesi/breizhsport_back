@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "Order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "orderNumber": {
+      "type": "uid",
+      "required": true
+    },
+    "users_permissions_user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "order_items": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::order-item.order-item"
+    },
+    "totalAmount": {
+      "type": "decimal",
+      "required": true
+    },
+    "orderStatus": {
+      "type": "enumeration",
+      "enum": [
+        "waiting",
+        "paid",
+        "shipped",
+        "delivered"
+      ],
+      "default": "waiting",
+      "required": true
+    },
+    "paymentMethod": {
+      "type": "enumeration",
+      "enum": [
+        "debt card",
+        "credit card",
+        "bank transfer",
+        "paypal"
+      ],
+      "required": true
+    },
+    "paymentStatus": {
+      "type": "enumeration",
+      "enum": [
+        "waiting",
+        "paid",
+        "failed"
+      ],
+      "required": true
+    },
+    "shippingMethod": {
+      "type": "enumeration",
+      "enum": [
+        "relay-standard",
+        "relay-express",
+        "home-standard",
+        "home-relay"
+      ],
+      "required": true
+    },
+    "trackingNumber": {
+      "type": "string"
+    },
+    "shippingAddress": {
+      "displayName": "Address",
+      "type": "component",
+      "repeatable": false,
+      "component": "order.address",
+      "required": true
+    }
+  }
+}

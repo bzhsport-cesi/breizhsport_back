@@ -1,5 +1,31 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface CommonAddress extends Struct.ComponentSchema {
+  collectionName: 'components_common_addresses';
+  info: {
+    displayName: 'Address';
+    icon: 'house';
+  };
+  attributes: {
+    city: Schema.Attribute.String & Schema.Attribute.Required;
+    country: Schema.Attribute.String & Schema.Attribute.Required;
+    fullName: Schema.Attribute.String & Schema.Attribute.Required;
+    notes: Schema.Attribute.Text;
+    phone: Schema.Attribute.String;
+    street: Schema.Attribute.String & Schema.Attribute.Required;
+    zipCode: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface OrderAddress extends Struct.ComponentSchema {
+  collectionName: 'components_order_addresses';
+  info: {
+    displayName: 'Address';
+    icon: 'house';
+  };
+  attributes: {};
+}
+
 export interface ProductAttribute extends Struct.ComponentSchema {
   collectionName: 'components_product_attributes';
   info: {
@@ -37,6 +63,8 @@ export interface ProductVariant extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'common.address': CommonAddress;
+      'order.address': OrderAddress;
       'product.attribute': ProductAttribute;
       'product.variant': ProductVariant;
     }

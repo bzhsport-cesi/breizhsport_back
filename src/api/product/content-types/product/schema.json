@@ -40,6 +40,12 @@
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "products"
+    },
+    "order_items": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::order-item.order-item",
+      "mappedBy": "products"
     }
   }
 }
